@@ -1,0 +1,21 @@
+[package]
+name = "unicode-width-ocaml"
+version = "0.1.0"
+edition = "2021"
+authors = ["Wybxc <wybxc@qq.com>"]
+description = "Displayed width of Unicode characters and strings"
+license = "Apache-2.0"
+repository = ""
+rust-version = "1.70.0"
+readme = "README.md"
+exclude = ["flake.nix", "flake.lock", ".github/"]
+
+[lib]
+crate-type = ["staticlib", "cdylib"]
+
+[dependencies]
+ocaml = "^1.0.0-beta"
+unicode-width = "0.1.10"
+
+[build-dependencies]
+ocaml-build = "1.0.0-beta.4"

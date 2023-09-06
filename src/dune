@@ -1,0 +1,17 @@
+(rule
+ (targets libunicode_width_ocaml.a dllunicode_width_ocaml.so)
+ (deps (glob_files *.rs))
+ (action
+  (progn
+   (run sh -c "cd %{project_root}/../.. && cargo build --release")
+   (run sh -c
+     "cp %{project_root}/../../target/release/libunicode_width_ocaml.so ./dllunicode_width_ocaml.so 2> /dev/null || \
+      cp %{project_root}/../../target/release/libunicode_width_ocaml.dylib ./dllunicode_width_ocaml.so")
+   (run cp %{project_root}/../../target/release/libunicode_width_ocaml.a libunicode_width_ocaml.a))))
+
+(library
+ (name unicode_width)
+ (public_name unicode-width)
+ (foreign_archives unicode_width_ocaml)
+ (c_library_flags
+  (-lpthread -lc -lm)))
